@@ -1,0 +1,26 @@
+{{ $baseChartValues := index .Values "cray-service" }}
+{{ $crayServiceValues := dict "Values" $baseChartValues "Chart" .Chart "Release" .Release}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: cray-tftp-hmn
+  labels:
+    app.kubernetes.io/name: {{ include "cray-service.name" $crayServiceValues }}
+    app.kubernetes.io/instance: {{ include "cray-service.name" $crayServiceValues }}
+  annotations:
+    metallb.universe.tf/address-pool: hardware-management
+    cray.io/service: cray-tftp
+spec:
+  type: LoadBalancer
+  network: hardware-management
+  externalTrafficPolicy: Local
+  loadBalancerIP: {{ .Values.hmn_tftp_service_ip }}
+  sharedIp: false
+  ports:
+      - port: 69
+        name: tftp-port
+        protocol: UDP
+        targetPort: 69
+  selector:
+    app.kubernetes.io/name: {{ include "cray-service.name" $crayServiceValues }}
+    app.kubernetes.io/instance: {{ include "cray-service.name" $crayServiceValues }}

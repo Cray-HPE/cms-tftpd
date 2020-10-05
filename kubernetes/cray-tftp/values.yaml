@@ -1,0 +1,66 @@
+# Please refer to https://stash.us.cray.com/projects/CLOUD/repos/cray-charts/browse/stable/cray-service/values.yaml?at=refs%2Fheads%2Fmaster
+# for more info on values you can set/override
+# Note that cray-service.containers[*].image and cray-service.initContainers[*].image map values are one of the only structures that
+# differ from the standard kubernetes container spec:
+# image:
+#   repository: ""
+#   tag: "" (default = "latest")
+#   pullPolicy: "" (default = "IfNotPresent")
+
+nmn_tftp_service_ip: "10.92.100.60"
+hmn_tftp_service_ip: "10.94.100.60"
+
+cray-service:
+  type: Deployment
+  nameOverride: cray-tftp
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - cray-tftp
+        topologyKey: "kubernetes.io/hostname"
+  replicaCount: 3
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+    type: RollingUpdate
+  containers:
+    - name: cray-tftp
+      image:
+        repository: cray/cray-tftpd
+      volumeMounts:
+        - name: cray-tftp-data
+          mountPath: /var/lib/tftpboot
+          subPath: tftp
+          readOnly: false
+      livenessProbe:
+        exec:
+          command:
+          - /app/tftp_liveness.sh
+        initialDelaySeconds: 5
+        periodSeconds: 30
+        # The default for FT is 3.
+        failureThreshold: 5
+      readinessProbe:
+        exec:
+          command:
+          - /app/tftp_readiness.sh
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        timeoutSeconds: 3
+  volumes:
+    - name: cray-tftp-data
+      persistentVolumeClaim:
+        claimName: "cray-tftp-shared-pvc"
+  restartPolicy: Always
+  metallb-address-pool: node-management
+  service:
+    enabled: false
+  ingress:
+    enabled: false

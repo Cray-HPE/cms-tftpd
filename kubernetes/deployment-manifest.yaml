@@ -1,0 +1,16 @@
+---
+schema: v1
+name: cray-service-manifest
+version: 1.0.2
+failOnFirstError: True
+repositories:
+  docker: registry.local
+  helm: charts.local
+charts: # Will install/upgrade charts in the order below
+  - name: "cray-tftp"
+    namespace: "services"
+    version: 1.0.14
+    waitFor:
+      helm: false
+    overrides:
+      - cray-service.imagesHost="{repos[docker]}"
