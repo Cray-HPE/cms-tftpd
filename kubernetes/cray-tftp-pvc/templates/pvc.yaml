@@ -1,0 +1,12 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "cray-tftp-shared-pvc"
+spec:
+  storageClassName: {{ .Values.storage_shared_class_cray_tftp }}
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.storage_shared_size_cray_tftp }}
