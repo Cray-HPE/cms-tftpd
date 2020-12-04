@@ -1,0 +1,57 @@
+{{- $baseChartValues := index .Values "cray-service" -}}
+# Purpose: The purpose of this daemonset is to allow the nf_nat_tftp module
+# to be loaded by the running kernel on all nodes that are candidates for
+# accepting ingress traffic into the network. Typically, this includes
+# worker nodes, but can include master nodes if the master taint is
+# removed. In BGP mode, this means any node that can serve as a speaker
+# should load this module.
+#
+# This is implemented as a daemonset and not a job, because a daemonset
+# is resilient to reboot operations. This is the quickest possible
+# solution currently available for re-establishing a route to the TFTP
+# pods in question, especially given nodes that miss the window of
+# opportunity for tftp download often find themselves into a UEFI shell.
+---
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: 'cray-tftp-modprobe'
+  namespace: services
+  labels:
+    k8s-app: 'cray-tftp-modprobe'
+spec:
+  selector:
+    matchLabels:
+      name: 'cray-tftp-modprobe'
+  template:
+    metadata:
+      labels:
+        name: 'cray-tftp-modprobe'
+      annotations:
+        'sidecar.istio.io/inject': 'false'
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: modprobe
+        resources:
+          limits:
+            memory: "20M"
+          requests:
+            cpu: ".1"
+            memory: "20M"
+        image: "{{ $baseChartValues.imagesHost }}/baseos/alpine:3.11.5"
+        imagePullPolicy: Always
+        command: ["/bin/ash"]
+        args: ["-c", "modprobe nf_nat_tftp; while true; do sleep 999999; done"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /lib/modules
+            name: kernel-modules
+      terminationGracePeriodSeconds: 1
+      volumes:
+      - name: kernel-modules
+        hostPath:
+          path: /lib/modules
