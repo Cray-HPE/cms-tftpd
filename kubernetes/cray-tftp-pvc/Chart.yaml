@@ -2,4 +2,4 @@ apiVersion: v1
 description: "Kubernetes resources for cray-tftp-pvc"
 name: "cray-tftp-pvc"
 home: "scms/cms-tftpd-pvc"
-version: 1.2.3
+version: 1.2.4

@@ -9,7 +9,7 @@ repositories:
 charts: # Will install/upgrade charts in the order below
   - name: "cray-tftp"
     namespace: "services"
-    version: 1.0.14
+    version: 1.0.15
     waitFor:
       helm: false
     overrides:
