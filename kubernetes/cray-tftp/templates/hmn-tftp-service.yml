@@ -12,7 +12,7 @@ metadata:
     cray.io/service: cray-tftp
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
+  externalTrafficPolicy: Cluster
   loadBalancerIP: {{ .Values.hmn_tftp_service_ip }}
   ports:
       - port: 69
