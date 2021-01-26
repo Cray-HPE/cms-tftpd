@@ -7,7 +7,8 @@
 #   tag: "" (default = "latest")
 #   pullPolicy: "" (default = "IfNotPresent")
 
-storage_shared_size_cray_tftp: "5Gi"
+nmn_tftp_service_ip: "10.92.100.60"
+hmn_tftp_service_ip: "10.94.100.60"
 
 cray-service:
   type: Deployment
@@ -51,7 +52,7 @@ cray-service:
     - name: cray-ipxe
       image:
         repository: cray/cray-bss-ipxe
-        pullPolicy: Always
+        tag: IMAGE_CRAY_BSS_IPXE_TAG
       volumeMounts:
       - name: cray-tftp-data
         mountPath: /shared_tftp
@@ -86,16 +87,9 @@ cray-service:
         name: cray-configmap-ca-public-key
   restartPolicy: Always
   metallb-address-pool: node-management
-  service:
-    enabled: true
-    type: LoadBalancer
-    loadBalancerIP: ""
-    ports:
-      - port: 69
-        name: tftp
-        protocol: UDP
-        targetPort: 69
   ingress:
+    enabled: false
+  service:
     enabled: false
   
 ipxe:
@@ -159,4 +153,3 @@ ipxe:
   # represents the pathological maximum to boot; in reality nothing should ever get
   # this high.
   bss_ceiling: 64
-  
