@@ -10,10 +10,16 @@ metadata:
   annotations:
     metallb.universe.tf/address-pool: node-management
     cray.io/service: cray-tftp
+    cloud.google.com/load-balancer-type: "Internal"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Cluster
+{{- if .Values.nmn_internal_lb_supports_static_ip }}
   loadBalancerIP: {{ .Values.nmn_tftp_service_ip }}
+{{- else }}
+  externalIPs:
+  - {{ .Values.nmn_tftp_service_ip }}
+{{- end }}
   ports:
       - port: 69
         name: tftp-port
