@@ -7,7 +7,9 @@
 #   tag: "" (default = "latest")
 #   pullPolicy: "" (default = "IfNotPresent")
 
+nmn_internal_lb_supports_static_ip: true
 nmn_tftp_service_ip: "10.92.100.60"
+hmn_internal_lb_supports_static_ip: true
 hmn_tftp_service_ip: "10.94.100.60"
 
 cray-service:
