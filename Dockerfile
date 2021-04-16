@@ -1,7 +1,7 @@
 # Dockerfile for CMS tftpd service
 # Copyright 2018-2020 Hewlett Packard Enterprise Development LP
 
-FROM dtr.dev.cray.com/baseos/alpine:3.12.0
+FROM arti.dev.cray.com/baseos-docker-master-local/alpine:3.13.5
 WORKDIR /app
 EXPOSE 69/udp
 VOLUME /var/lib/tftpboot
