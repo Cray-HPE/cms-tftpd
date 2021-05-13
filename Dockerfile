@@ -21,7 +21,7 @@
 #
 # (MIT License)
 
-FROM dtr.dev.cray.com/baseos/alpine:3.12.0
+FROM arti.dev.cray.com/baseos-docker-master-local/alpine:3.12
 WORKDIR /app
 EXPOSE 69/udp
 VOLUME /var/lib/tftpboot
