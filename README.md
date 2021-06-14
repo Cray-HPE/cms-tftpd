@@ -45,11 +45,24 @@ tftp> quit
 
 See cms-tools repo for details on running CT tests for this service.
 
+## Dependency: cray-bss-ipxe
+cms-tftpd uses the cray-bss-ipxe image built by the cms-ipxe repo. 
+We specify which major and minor version of the image we want with the 
+[update_external_versions.conf](update_external_versions.conf) file.
+At build time the [runBuildPrep.sh](runBuildPrep.sh) script finds the
+latest version with that major and minor number.
+
+When creating a new release branch, be sure to update this file to specify the
+desired major and minor number of the image for the new release.
+
 ## Versioning
 Use [SemVer](http://semver.org/). The version is located in the [.version](.version) file. Other files either
 read the version string from this file or have this version string written to them at build time 
 based on the information in the [update_versions.conf](update_versions.conf) file (using the 
 update_versions.sh script in the cms-meta-tools repo).
+
+## Build Helpers
+This repo uses some build helper scripts from the cms-meta-tools repo. See that repo for more details.
 
 ## Copyright and License
 This project is copyrighted by Hewlett Packard Enterprise Development LP and is under the MIT
