@@ -20,44 +20,42 @@
 #
 # (MIT License)
 
+# If you wish to perform a local build, you will need to clone or copy the contents of the
+# cms-meta-tools repo to ./cms_meta_tools
+
 DOCKER_NAME ?= cray-tftpd
 CHART_PATH ?= kubernetes
-VERSION ?= $(shell cat .version)-local
-CHART_VERSION ?= $(VERSION)
+DOCKER_VERSION ?= $(shell head -1 .docker_version)
+CHART_VERSION ?= $(shell head -1 .chart_version)
 
 HELM_UNITTEST_IMAGE ?= quintush/helm-unittest:3.3.0-0.2.5
 
-all : clone_cms_meta_tools build_prep lint image chart
+all : runbuildprep lint image chart
 chart: chart_setup chart_tftp chart_tftp_pvc chart_tftpd_ipxe
 
 chart_tftp: chart_tftp_package chart_tftp_test
 chart_tftp_pvc: chart_tftp_pvc_package chart_tftp_pvc_test
 chart_tftpd_ipxe: chart_tftpd_ipxe_package chart_tftpd_ipxe_test
 
-# If you wish to perform a local build, you will need to clone or copy the contents of the
-# cms_meta_tools repo to ./cms_meta_tools
-clone_cms_meta_tools:
-		git clone --depth 1 --no-single-branch https://github.com/Cray-HPE/cms-meta-tools.git ./cms_meta_tools
-
-build_prep:
+runbuildprep:
 		./cms_meta_tools/scripts/runBuildPrep.sh
 
 lint:
 		./cms_meta_tools/scripts/runLint.sh
 
 image:
-		docker build --pull ${DOCKER_ARGS} --tag '${DOCKER_NAME}:${VERSION}' .
+		docker build --pull ${DOCKER_ARGS} --tag '${DOCKER_NAME}:${DOCKER_VERSION}' .
 
 
 chart_setup:
 		mkdir -p ${CHART_PATH}/.packaged
-		printf "\nglobal:\n  appVersion: ${VERSION}" >> ${CHART_PATH}/cray-tftp/values.yaml
-		printf "\nglobal:\n  appVersion: ${VERSION}" >> ${CHART_PATH}/cray-tftp-pvc/values.yaml
-		printf "\nglobal:\n  appVersion: ${VERSION}" >> ${CHART_PATH}/cray-tftpd-ipxe/values.yaml
+		printf "\nglobal:\n  appVersion: ${DOCKER_VERSION}" >> ${CHART_PATH}/cray-tftp/values.yaml
+		printf "\nglobal:\n  appVersion: ${DOCKER_VERSION}" >> ${CHART_PATH}/cray-tftp-pvc/values.yaml
+		printf "\nglobal:\n  appVersion: ${DOCKER_VERSION}" >> ${CHART_PATH}/cray-tftpd-ipxe/values.yaml
 
 chart_tftp_package:
 		helm dep up ${CHART_PATH}/cray-tftp
-		helm package ${CHART_PATH}/cray-tftp -d ${CHART_PATH}/.packaged --app-version ${VERSION} --version ${CHART_VERSION}
+		helm package ${CHART_PATH}/cray-tftp -d ${CHART_PATH}/.packaged --app-version ${DOCKER_VERSION} --version ${CHART_VERSION}
 
 chart_tftp_test:
 		helm lint "${CHART_PATH}/cray-tftp"
@@ -65,14 +63,14 @@ chart_tftp_test:
 
 chart_tftp_pvc_package:
 		helm dep up ${CHART_PATH}/cray-tftp-pvc
-		helm package ${CHART_PATH}/cray-tftp-pvc -d ${CHART_PATH}/.packaged --app-version ${VERSION} --version ${CHART_VERSION}
+		helm package ${CHART_PATH}/cray-tftp-pvc -d ${CHART_PATH}/.packaged --app-version ${DOCKER_VERSION} --version ${CHART_VERSION}
 
 chart_tftp_pvc_test:
 		helm lint "${CHART_PATH}/cray-tftp-pvc"
 		docker run --rm -v ${PWD}/${CHART_PATH}:/apps ${HELM_UNITTEST_IMAGE} -3 cray-tftp-pvc
 chart_tftpd_ipxe_package:
 		helm dep up ${CHART_PATH}/cray-tftpd-ipxe
-		helm package ${CHART_PATH}/cray-tftpd-ipxe -d ${CHART_PATH}/.packaged --app-version ${VERSION} --version ${CHART_VERSION}
+		helm package ${CHART_PATH}/cray-tftpd-ipxe -d ${CHART_PATH}/.packaged --app-version ${DOCKER_VERSION} --version ${CHART_VERSION}
 
 chart_tftpd_ipxe_test:
 		helm lint "${CHART_PATH}/cray-tftpd-ipxe"
