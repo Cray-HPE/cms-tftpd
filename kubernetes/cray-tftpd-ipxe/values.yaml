@@ -14,6 +14,7 @@ cray-service:
   type: Deployment
   nameOverride: cray-tftpd-ipxe
   serviceAccountName: cray-ipxe
+  priorityClassName: csm-high-priority-service
   podAnnotations:
     sidecar.istio.io/inject: "false"
   affinity:
