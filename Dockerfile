@@ -21,7 +21,7 @@
 #
 # (MIT License)
 
-FROM artifactory.algol60.net/docker.io/alpine:3.13
+FROM artifactory.algol60.net/docker.io/alpine:3.13 as base
 WORKDIR /app
 EXPOSE 69/udp
 VOLUME /var/lib/tftpboot
