@@ -25,9 +25,12 @@ FROM artifactory.algol60.net/docker.io/alpine:3.13 as base
 WORKDIR /app
 EXPOSE 69/udp
 VOLUME /var/lib/tftpboot
-RUN apk add --no-cache \
-    syslog-ng \
-    tftp-hpa && \
+RUN apk add --upgrade --no-cache apk-tools &&  \
+	apk update && \
+	apk add --no-cache \
+		syslog-ng \
+		tftp-hpa && \
+	apk -U upgrade --no-cache && \
     mkdir -p /var/lib/tftpboot
 COPY syslog-ng.conf /etc/syslog-ng/
 COPY tftp_liveness.sh tftp_readiness.sh entrypoint.sh /app/
