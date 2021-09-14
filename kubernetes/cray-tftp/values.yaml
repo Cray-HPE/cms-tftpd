@@ -15,7 +15,6 @@ hmn_tftp_service_ip: "10.94.100.60"
 cray-service:
   type: Deployment
   nameOverride: cray-tftp
-  priorityClassName: csm-high-priority-service
   podAnnotations:
     sidecar.istio.io/inject: "false"
   affinity:
