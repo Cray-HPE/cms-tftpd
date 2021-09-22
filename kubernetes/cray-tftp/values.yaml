@@ -35,8 +35,15 @@ cray-service:
   containers:
     cray-tftp:
       name: cray-tftp
+      securityContext:
+        readOnlyRootFilesystem: false
+        runAsNonRoot: false
       image:
         repository: cray/cray-tftpd
+      ports:
+        - name: tftpd
+          containerPort: 69
+          protocol: UDP
       volumeMounts:
         - name: cray-tftp-data
           mountPath: /var/lib/tftpboot
