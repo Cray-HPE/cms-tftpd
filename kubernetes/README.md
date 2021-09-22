@@ -1,3 +1,3 @@
-# Kubernetes Resources for cms-tftp
+# Kubernetes Resources for cray-tftp
 
 * Helm Chart(s)
