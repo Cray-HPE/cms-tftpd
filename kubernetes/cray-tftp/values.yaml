@@ -40,7 +40,7 @@ cray-service:
         readOnlyRootFilesystem: false
         runAsNonRoot: false
       image:
-        repository: cray/cray-tftpd
+        repository: artifactory.algol60.net/csm-docker/stable/cray-tftpd
       ports:
         - name: tftpd
           containerPort: 69

@@ -1,5 +1,26 @@
-apiVersion: v1
-description: "Kubernetes resources for cray-tftp"
+apiVersion: v2
 name: "cray-tftp"
+version: 0.0.0
+description: "Kubernetes resources for cray-tftp"
 home: "https://github.com/Cray-HPE/cms-tftpd"
-version: @VERSION@
+sources:
+- "https://github.com/Cray-HPE/cms-tftpd"
+dependencies:
+- name: cray-service
+  version: "^7.0.0"
+  repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts/"
+maintainers:
+- name: rkleinman-hpe
+  email: randy.kleinman@hpe.com
+- name: jsl-hpe
+  email: joel.landsteiner@hpe.com
+- name: jsollom-hpe
+  email: jason.sollom@hpe.com
+appVersion: 0.0.0
+annotations:
+  artifacthub.io/images: |
+    - name: cray-tftpd
+      image: artifactory.algol60.net/csm-docker/stable/cray-tftpd:0.0.0
+    - name: alpine
+      image: artifactory.algol60.net/docker.io/library/alpine:3
+  artifacthub.io/license: MIT

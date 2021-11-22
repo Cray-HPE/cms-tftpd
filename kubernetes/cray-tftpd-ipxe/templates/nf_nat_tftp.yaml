@@ -41,7 +41,7 @@ spec:
           requests:
             cpu: ".1"
             memory: "20M"
-        image: "{{ $baseChartValues.imagesHost }}/baseos/alpine:3.12"
+        image: "artifactory.algol60.net/docker.io/library/alpine:3"
         imagePullPolicy: Always
         command: ["/bin/ash"]
         args: ["-c", "modprobe nf_nat_tftp; while true; do sleep 999999; done"]
