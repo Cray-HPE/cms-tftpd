@@ -14,6 +14,7 @@ cray-service:
   type: Deployment
   nameOverride: cray-tftpd-ipxe
   serviceAccountName: cray-ipxe
+  priorityClassName: csm-high-priority-service
   podAnnotations:
     sidecar.istio.io/inject: "false"
   affinity:
@@ -30,7 +31,7 @@ cray-service:
   containers:
     - name: cray-tftp
       image:
-        repository: cray/cray-tftpd
+        repository: artifactory.algol60.net/csm-docker/stable/cray-tftpd
       volumeMounts:
         - name: cray-tftp-data
           mountPath: /var/lib/tftpboot
@@ -51,7 +52,7 @@ cray-service:
         periodSeconds: 10
     - name: cray-ipxe
       image:
-        repository: cray/cray-bss-ipxe
+        repository: artifactory.algol60.net/csm-docker/stable/cray-bss-ipxe
         tag: IMAGE_CRAY_BSS_IPXE_TAG
       volumeMounts:
       - name: cray-tftp-data
@@ -91,7 +92,7 @@ cray-service:
     enabled: false
   service:
     enabled: false
-  
+
 ipxe:
   name: cray-ipxe
   namespace: services
@@ -126,12 +127,12 @@ ipxe:
   # Overall time incurred on network miss depends on dhcp configuration on the
   # network attached to the NICs, but is about 10 seconds per failed network try.
   nic_boot_order:
-   - net2
-   - net0
-   - net1
-   - net3
-   - net4
-   - net5
+    - net2
+    - net0
+    - net1
+    - net3
+    - net4
+    - net5
 
   bss_max_attempts: 1024
 
