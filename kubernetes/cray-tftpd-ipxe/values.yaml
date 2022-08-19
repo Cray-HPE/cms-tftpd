@@ -53,6 +53,11 @@ cray-service:
   replicaCount: 3
   containers:
     - name: cray-tftp
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        readOnlyRootFilesystem: false
+        runAsNonRoot: false
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-tftpd
       volumeMounts:
