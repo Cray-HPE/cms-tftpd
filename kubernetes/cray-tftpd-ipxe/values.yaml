@@ -54,6 +54,8 @@ cray-service:
   containers:
     - name: cray-tftp
       securityContext:
+        runAsUser: 0
+        runAsGroup: 0
         readOnlyRootFilesystem: false
         runAsNonRoot: false
       image:
