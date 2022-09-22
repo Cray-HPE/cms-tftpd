@@ -122,7 +122,7 @@ ipxe:
   image_version: "latest"
 
   # Override with networks['node_management'].api_gw_service_dnsname
-  api_gw: api-gw-service-nmn.local
+  api_gw: api.nmnlb
 
   # The following are options that pertain to the build environment; checking in
   # values here change the resultant number of build environments that are created
