@@ -23,7 +23,7 @@
 #
 apiVersion: v2
 name: "cray-tftp"
-version: 0.0.0
+version: 0.0.0-chart
 description: "Kubernetes resources for cray-tftp"
 home: "https://github.com/Cray-HPE/cms-tftpd"
 sources:
@@ -39,11 +39,11 @@ maintainers:
   email: joel.landsteiner@hpe.com
 - name: jsollom-hpe
   email: jason.sollom@hpe.com
-appVersion: 0.0.0
+appVersion: 0.0.0-image
 annotations:
   artifacthub.io/images: |
     - name: cray-tftpd
-      image: artifactory.algol60.net/csm-docker/stable/cray-tftpd:0.0.0
+      image: artifactory.algol60.net/csm-docker/stable/cray-tftpd:0.0.0-image
     - name: alpine
       image: artifactory.algol60.net/docker.io/library/alpine:3
   artifacthub.io/license: MIT
