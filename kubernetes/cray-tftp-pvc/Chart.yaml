@@ -23,7 +23,7 @@
 #
 apiVersion: v2
 name: "cray-tftp-pvc"
-version: 0.0.0
+version: 0.0.0-chart
 description: "Kubernetes resources for cray-tftp-pvc"
 home: https://github.com/Cray-HPE/cms-tftpd
 sources:
@@ -35,6 +35,6 @@ maintainers:
   email: joel.landsteiner@hpe.com
 - name: jsollom-hpe
   email: jason.sollom@hpe.com
-appVersion: 0.0.0
+appVersion: 0.0.0-image
 annotations:
   artifacthub.io/license: MIT
