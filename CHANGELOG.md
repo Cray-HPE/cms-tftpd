@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Spelling corrections.
 - Update Charts with correct image and chart version strings during builds.
 
+## [1.8.1] - 2022-12-20
+### Added
+- Add Artifactory authentication to Jenkinsfile
+
 ## [1.8.0] - 2022-08-10
 ### Changed
 - Convert to gitflow/gitversion.
