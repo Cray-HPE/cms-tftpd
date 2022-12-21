@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- Add root override to cray-tftp-ipxe helm chart
 - Enabled building of unstable artifacts
 - Updated header of update_versions.conf to reflect new tool options
 
