@@ -64,7 +64,7 @@ spec:
           requests:
             cpu: ".1"
             memory: "20M"
-        image: "artifactory.algol60.net/docker.io/library/alpine:3"
+        image: "artifactory.algol60.net/csm-docker/S-T-A-B-L-E/cray-tftpd:0.0.0-image"
         imagePullPolicy: Always
         command: ["/bin/ash"]
         args: ["-c", "modprobe nf_nat_tftp; while true; do sleep 999999; done"]
