@@ -33,8 +33,6 @@ dependencies:
   version: "^7.0.0"
   repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts/"
 maintainers:
-- name: rkleinman-hpe
-  email: randy.kleinman@hpe.com
 - name: jsl-hpe
   email: joel.landsteiner@hpe.com
 - name: jsollom-hpe
