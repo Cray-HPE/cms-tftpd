@@ -59,7 +59,7 @@ cray-service:
         readOnlyRootFilesystem: false
         runAsNonRoot: false
       image:
-        repository: artifactory.algol60.net/csm-docker/stable/cray-tftpd
+        repository: artifactory.algol60.net/csm-docker/S-T-A-B-L-E/cray-tftpd
       volumeMounts:
         - name: cray-tftp-data
           mountPath: /var/lib/tftpboot
@@ -165,7 +165,7 @@ ipxe:
   bss_max_attempts: 1024
 
   # The longest period of time to wait between attempts for contacting BSS over NICs
-  # interated in cray_nic-boot_order. This number is effectively influenced by the
+  # iterated in cray_nic-boot_order. This number is effectively influenced by the
   # number of nodes expected to be booted simultaneously, and the effective number
   # of requests per second that BSS can serve out, assuming an average number of
   # requests per second. The exact number of requests per second is probably not
