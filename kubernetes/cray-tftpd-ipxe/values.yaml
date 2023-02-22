@@ -59,7 +59,7 @@ cray-service:
         readOnlyRootFilesystem: false
         runAsNonRoot: false
       image:
-        repository: artifactory.algol60.net/csm-docker/S-T-A-B-L-E/cray-tftpd
+        repository: artifactory.algol60.net/csm-docker/stable/cray-tftpd
       volumeMounts:
         - name: cray-tftp-data
           mountPath: /var/lib/tftpboot

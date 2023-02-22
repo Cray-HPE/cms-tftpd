@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Spelling corrections.
 - Update Charts with correct image and chart version strings during builds.
 
+## [1.8.2] - 2023-02-22
+### Added
+- Added root security context for cray-tftp container
+
 ## [1.8.1] - 2022-12-20
 ### Added
 - Add Artifactory authentication to Jenkinsfile
@@ -24,9 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Convert to gitflow/gitversion.
 
-## [1.8.2] - 2023-02-22
-### Changed
-- Added root security context for cray-tftp container
 
 
 
