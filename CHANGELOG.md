@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [1.8.4] - 2023-03-14
+### Changed
+- Use cray-bss-ipxe version 1.11 (CASMCMS-8460)
+
+### Removed
+- Removed file remnants of previous dynamic versioning system (CASMCMS-8460)
+
 ## [1.8.3] - 2023-03-14
 ### Changed
 - Do not run cray-tftp-modprobe pods on master NCNs (CASMCMS-8450)
