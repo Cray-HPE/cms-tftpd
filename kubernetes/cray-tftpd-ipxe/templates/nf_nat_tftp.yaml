@@ -1,7 +1,7 @@
 {{/*
 MIT License
 
-(C) Copyright 2021-2022 Hewlett Packard Enterprise Development LP
+(C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -23,11 +23,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 */}}
 {{- $baseChartValues := index .Values "cray-service" -}}
 # Purpose: The purpose of this daemonset is to allow the nf_nat_tftp module
-# to be loaded by the running kernel on all nodes that are candidates for
-# accepting ingress traffic into the network. Typically, this includes
-# worker nodes, but can include master nodes if the master taint is
-# removed. In BGP mode, this means any node that can serve as a speaker
-# should load this module.
+# to be loaded by the running kernel. The nf_nat_tftp kernel module is required
+# for cray-tftp pods to work on a node.
+#
+# The master taint means that the cray-tftp pods only run on NCN worker
+# nodes. However, even if the master taint was removed, the switch configurations
+# would also have to be updated to have them peer with the master nodes. Even with
+# speakers running on the masters, nothing is peering with them, so no LB traffic
+# will ever go to the masters. 
+#
+# Because of the above, this daemonset only runs on NCN workers.
 #
 # This is implemented as a daemonset and not a job, because a daemonset
 # is resilient to reboot operations. This is the quickest possible
@@ -53,9 +58,6 @@ spec:
       annotations:
         'sidecar.istio.io/inject': 'false'
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/master
-        effect: NoSchedule
       containers:
       - name: modprobe
         resources:
