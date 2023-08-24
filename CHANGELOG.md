@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Disabled concurrent Jenkins builds on same branch/commit
 - Added build timeout to avoid hung builds
 
+### Dependencies
+- Bump `tj-actions/changed-files` from 37 to 38 ([#50](https://github.com/Cray-HPE/cms-tftpd/pull/50))
+
 ## [1.8.4] - 2023-03-14
 ### Changed
 - Use cray-bss-ipxe version 1.11 (CASMCMS-8460)
@@ -39,4 +42,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.0] - 2022-08-10
 ### Changed
 - Convert to gitflow/gitversion.
-
