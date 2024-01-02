@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added build timeout to avoid hung builds
 
 ### Dependencies
-- Bump `tj-actions/changed-files` from 37 to 40 ([#50](https://github.com/Cray-HPE/cms-tftpd/pull/50), [#52](https://github.com/Cray-HPE/cms-tftpd/pull/52), [#54](https://github.com/Cray-HPE/cms-tftpd/pull/54))
+- Bump `tj-actions/changed-files` from 37 to 41 ([#50](https://github.com/Cray-HPE/cms-tftpd/pull/50), [#52](https://github.com/Cray-HPE/cms-tftpd/pull/52), [#54](https://github.com/Cray-HPE/cms-tftpd/pull/54), [#55](https://github.com/Cray-HPE/cms-tftpd/pull/55))
 - Bump `actions/checkout` from 3 to 4 ([#51](https://github.com/Cray-HPE/cms-tftpd/pull/51))
 - Bump `stefanzweifel/git-auto-commit-action` from 4 to 5 ([#53](https://github.com/Cray-HPE/cms-tftpd/pull/53))
 
