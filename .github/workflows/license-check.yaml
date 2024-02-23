@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2023 Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -21,27 +21,28 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 #
-apiVersion: v2
-name: "cray-tftp-ipxe"
-version: 0.0.0-chart
-description: "Kubernetes resources for cray-tftp-ipxe"
-home: "https://github.com/Cray-HPE/cms-tftpd"
-sources:
-- "https://github.com/Cray-HPE/cms-tftpd"
-dependencies:
-- name: cray-service
-  version: "^7.0.0"
-  repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts/"
-maintainers:
-- name: jsl-hpe
-  email: joel.landsteiner@hpe.com
-- name: jsollom-hpe
-  email: jason.sollom@hpe.com
-appVersion: 0.0.0-image
-annotations:
-  artifacthub.io/images: |
-    - name: cray-tftpd
-      image: artifactory.algol60.net/csm-docker/S-T-A-B-L-E/cray-tftpd:0.0.0-image
-    - name: cray-bss-ipxe
-      image: artifactory.algol60.net/csm-docker/stable/cray-bss-ipxe:IMAGE_CRAY_BSS_IPXE_TAG
-  artifacthub.io/license: MIT
+name: Check Licenses
+
+on:
+  pull_request:
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+
+    container:
+      image: artifactory.algol60.net/csm-docker/stable/license-checker:latest
+      credentials:
+          username: ${{ secrets.ARTIFACTORY_ALGOL60_READONLY_USERNAME }}
+          password: ${{ secrets.ARTIFACTORY_ALGOL60_READONLY_TOKEN }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v42
+
+    - name: License Check
+      if: ${{ steps.changed-files.outputs.all_changed_files }}
+      run: /usr/local/bin/python3 /license_check/license_check.py ${{ steps.changed-files.outputs.all_changed_files }}

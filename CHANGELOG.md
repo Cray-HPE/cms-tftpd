@@ -5,7 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [Unreleased]
+
+## [1.9.0] - 2024-02-23
+### Changed
+- Disabled concurrent Jenkins builds on same branch/commit
+- Added build timeout to avoid hung builds
+
+### Dependencies
+- Bump `tj-actions/changed-files` from 37 to 42 ([#50](https://github.com/Cray-HPE/cms-tftpd/pull/50), [#52](https://github.com/Cray-HPE/cms-tftpd/pull/52), [#54](https://github.com/Cray-HPE/cms-tftpd/pull/54), [#55](https://github.com/Cray-HPE/cms-tftpd/pull/55), [#57](https://github.com/Cray-HPE/cms-tftpd/pull/57))
+- Bump `actions/checkout` from 3 to 4 ([#51](https://github.com/Cray-HPE/cms-tftpd/pull/51))
+- Bump `stefanzweifel/git-auto-commit-action` from 4 to 5 ([#53](https://github.com/Cray-HPE/cms-tftpd/pull/53))
 
 ## [1.8.4] - 2023-03-14
 ### Changed
@@ -36,4 +46,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.0] - 2022-08-10
 ### Changed
 - Convert to gitflow/gitversion.
-

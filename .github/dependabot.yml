@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2023 Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -21,27 +21,34 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 #
-apiVersion: v2
-name: "cray-tftp-ipxe"
-version: 0.0.0-chart
-description: "Kubernetes resources for cray-tftp-ipxe"
-home: "https://github.com/Cray-HPE/cms-tftpd"
-sources:
-- "https://github.com/Cray-HPE/cms-tftpd"
-dependencies:
-- name: cray-service
-  version: "^7.0.0"
-  repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts/"
-maintainers:
-- name: jsl-hpe
-  email: joel.landsteiner@hpe.com
-- name: jsollom-hpe
-  email: jason.sollom@hpe.com
-appVersion: 0.0.0-image
-annotations:
-  artifacthub.io/images: |
-    - name: cray-tftpd
-      image: artifactory.algol60.net/csm-docker/S-T-A-B-L-E/cray-tftpd:0.0.0-image
-    - name: cray-bss-ipxe
-      image: artifactory.algol60.net/csm-docker/stable/cray-bss-ipxe:IMAGE_CRAY_BSS_IPXE_TAG
-  artifacthub.io/license: MIT
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "Cray-HPE/CMS-core-product-support"
+    labels:
+      - "github-actions-deps"
+      - "dependabot"
+    open-pull-requests-limit: 16
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "Cray-HPE/CMS-core-product-support"
+    labels:
+      - "python-deps"
+      - "dependabot"
+    open-pull-requests-limit: 16
+    allow:
+      # Allow updates to both direct and indirect dependencies
+      - dependency-type: "all"
+    ignore:
+      # Only look for patch version updates
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor" ]
