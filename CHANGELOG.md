@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Dependencies
-- Bump `tj-actions/changed-files` from 42 to 43 ([#60](https://github.com/Cray-HPE/cms-tftpd/pull/60))
+- Bump `tj-actions/changed-files` from 42 to 44 ([#60](https://github.com/Cray-HPE/cms-tftpd/pull/60), [#61](https://github.com/Cray-HPE/cms-tftpd/pull/61))
 
 ## [1.9.0] - 2024-02-23
 ### Changed
