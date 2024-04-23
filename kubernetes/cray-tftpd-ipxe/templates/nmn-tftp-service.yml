@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright 2021-2022 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -26,13 +26,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cray-tftpd-nmn
+  name: cray-tftp-nmn
   labels:
     app.kubernetes.io/name: {{ include "cray-service.name" $crayServiceValues }}
     app.kubernetes.io/instance: {{ include "cray-service.name" $crayServiceValues }}
   annotations:
     metallb.universe.tf/address-pool: node-management
-    cray.io/service: cray-tftpd
+    cray.io/service: cray-tftp
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Cluster
