@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update cray-tftp-ipxe chart to work with CSM 1.6 manifests
 
 ### Dependencies
-- Bump `tj-actions/changed-files` from 42 to 44 ([#60](https://github.com/Cray-HPE/cms-tftpd/pull/60), [#61](https://github.com/Cray-HPE/cms-tftpd/pull/61))
+- Bump `tj-actions/changed-files` from 42 to 45 ([#60](https://github.com/Cray-HPE/cms-tftpd/pull/60), [#61](https://github.com/Cray-HPE/cms-tftpd/pull/61), [#65](https://github.com/Cray-HPE/cms-tftpd/pull/65))
 
 ## [1.10.0] - 2024-04-29
 ### Changed
