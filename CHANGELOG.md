@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.2] - 2024-09-05
+
 ### Dependencies
 - Move to `cray-bss-ipxe` 1.14.x for CSM 1.6
 
