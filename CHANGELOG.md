@@ -6,11 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Changed
-- Update cray-tftp-ipxe chart to work with CSM 1.6 manifests
 
 ### Dependencies
-- Bump `tj-actions/changed-files` from 42 to 45 ([#60](https://github.com/Cray-HPE/cms-tftpd/pull/60), [#61](https://github.com/Cray-HPE/cms-tftpd/pull/61), [#65](https://github.com/Cray-HPE/cms-tftpd/pull/65))
+- Bump `tj-actions/changed-files` from 44 to 45 ([#65](https://github.com/Cray-HPE/cms-tftpd/pull/65))
+- Bump `cray-services` base chart version to 11.0
 
 ## [1.10.0] - 2024-04-29
 ### Changed
