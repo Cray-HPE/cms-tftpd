@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.1] - 2024-09-05
+
 ### Dependencies
 - Bump `tj-actions/changed-files` from 44 to 45 ([#65](https://github.com/Cray-HPE/cms-tftpd/pull/65))
 - Bump `cray-services` base chart version to 11.0
