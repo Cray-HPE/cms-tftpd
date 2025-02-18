@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright 2018-2023 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2018-2023, 2025 Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -23,7 +23,7 @@
 #
 # Dockerfile for CMS tftpd service
 
-FROM artifactory.algol60.net/csm-docker/stable/docker.io/library/alpine:3.15 as base
+FROM artifactory.algol60.net/csm-docker/stable/docker.io/library/alpine:3.21 as base
 WORKDIR /app
 EXPOSE 69/udp
 VOLUME /var/lib/tftpboot
