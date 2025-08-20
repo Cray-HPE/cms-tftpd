@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Dependencies
+
+- Bump `actions/checkout` from 4 to 5 ([#75](https://github.com/Cray-HPE/cms-tftpd/pull/75))
+
 ## [1.12.0] - 2025-05-28
 
 ### Changed
