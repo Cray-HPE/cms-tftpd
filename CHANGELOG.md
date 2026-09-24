@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Dependencies
-
-- Bump `actions/checkout` from 4 to 6 ([#75](https://github.com/Cray-HPE/cms-tftpd/pull/75), [#77](https://github.com/Cray-HPE/cms-tftpd/pull/77))
+- Bump `actions/checkout` from 4 to 7 ([#75](https://github.com/Cray-HPE/cms-tftpd/pull/75), [#77](https://github.com/Cray-HPE/cms-tftpd/pull/77), [#78](https://github.com/Cray-HPE/cms-tftpd/pull/78))
+- Bump `stefanzweifel/git-auto-commit-action` from 5 to 7 ([#76](https://github.com/Cray-HPE/cms-tftpd/pull/76))
 - Bump `stefanzweifel/git-auto-commit-action` from 5 to 7 ([#76](https://github.com/Cray-HPE/cms-tftpd/pull/76))
 
 ## [1.12.0] - 2025-05-28
